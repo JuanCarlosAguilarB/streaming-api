@@ -1,6 +1,6 @@
-package com.streaming.app.streaming.catalog_item_genre.infrastructure.controller;
+package com.streaming.app.streaming.catalog_item_type.infrastructure.controller;
 
-import com.streaming.app.streaming.catalog_item_genre.service.find.CatalogItemGenreFinder;
+import com.streaming.app.streaming.catalog_item_type.service.find.CatalogItemGenreFinder;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class GetCatalogItemGenre {
     private final CatalogItemGenreFinder service;
 
     @Operation(summary = "Get all genres", description = "Get all genres", tags = {"Genre"})
-    @GetMapping("/v1/catalog-item/genres/")
+    @GetMapping("/catalog_item_genre/")
     public ResponseEntity<?> getCatalogItemGenre() {
         return ResponseEntity.ok(service.findAll());
     }
