@@ -15,7 +15,7 @@ public class GetCatalogItemGenre {
     private final CatalogItemGenreFinder service;
 
     @Operation(summary = "Get all genres", description = "Get all genres", tags = {"Genre"})
-    @GetMapping("/catalog_item_genre/")
+    @GetMapping("/v1/catalog-item/genre/")
     public ResponseEntity<?> getCatalogItemGenre() {
         return ResponseEntity.ok(service.findAll());
     }
