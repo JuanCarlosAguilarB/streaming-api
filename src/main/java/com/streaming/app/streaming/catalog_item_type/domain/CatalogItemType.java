@@ -10,4 +10,15 @@ public class CatalogItemType {
     private CatalogItemTypeName name;
     private CatalogItemTypeDescription description;
 
+    public CatalogItemTypeId id() {
+        return id;
+    }
+
+    public CatalogItemTypeName name() {
+        return name;
+    }
+
+    public CatalogItemTypeDescription description() {
+        return description;
+    }
 }
