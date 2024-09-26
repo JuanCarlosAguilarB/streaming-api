@@ -30,8 +30,8 @@ public class AuthServicesAdapter implements AuthServices {
         //    @Value("${jwt.accessTokenExpirationInDays:10}")
         int accessTokenExpirationInDays = 1000;
 
-        String accessToken = generateToken(accessTokenExpirationInDays, email);
-        String refreshToken = generateToken(refreshTokenExpirationInDays, email);
+        String accessToken = generateToken(accessTokenExpirationInDays, email.value());
+        String refreshToken = generateToken(refreshTokenExpirationInDays, email.value());
 
         return TokenResponse.builder()
                 .token(accessToken)
