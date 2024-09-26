@@ -30,13 +30,20 @@ public class CatalogItemEntity {
 
     private Long creationOrder;
 
-    @ManyToOne(targetEntity = CatalogItemTypeEntity.class)
-    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
+    @Column(name = "type_id", nullable = false)
     private Integer typeId;
 
+    @ManyToOne(targetEntity = CatalogItemTypeEntity.class)
+    @JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private CatalogItemTypeEntity type;
 
-    @ManyToOne(targetEntity = CatalogItemGenreEntity.class)
-    @JoinColumn(name = "genre_id", referencedColumnName = "id", nullable = false)
+
+    @Column(name = "genre_id", nullable = false)
     private Integer genreId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private CatalogItemGenreEntity genre;
+
 
 }
