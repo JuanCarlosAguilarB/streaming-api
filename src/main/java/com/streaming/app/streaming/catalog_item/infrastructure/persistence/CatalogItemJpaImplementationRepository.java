@@ -1,14 +1,12 @@
 package com.streaming.app.streaming.catalog_item.infrastructure.persistence;
 
-import com.streaming.app.streaming.catalog_item.domain.CatalogItem;
-import com.streaming.app.streaming.catalog_item.domain.CatalogItemId;
-import com.streaming.app.streaming.catalog_item.domain.CatalogItemRepository;
-import com.streaming.app.streaming.catalog_item.domain.CatalogItemTitle;
+import com.streaming.app.streaming.catalog_item.domain.*;
 import com.streaming.app.streaming.shared.domain.CatalogItemGenreId;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.streaming.app.streaming.catalog_item.infrastructure.persistence.CatalogItemMapper.toEntity;
 
@@ -30,8 +28,13 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
     }
 
     @Override
-    public CatalogItem findById(CatalogItemId id) {
-        return repository.findById(id.value()).map(CatalogItemMapper::toDomain).orElse(null);
+    public Optional<CatalogItem> findById(CatalogItemId id) {
+        return repository.findById(id.value()).map(CatalogItemMapper::toDomain);
+    }
+
+    @Override
+    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCrationOrder order) {
+        return repository.findByCreationOrder(order.value()).map(CatalogItemMapper::toDomain);
     }
 
     @Override

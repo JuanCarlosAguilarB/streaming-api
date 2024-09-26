@@ -3,6 +3,7 @@ package com.streaming.app.streaming.catalog_item.domain;
 import com.streaming.app.streaming.shared.domain.CatalogItemGenreId;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CatalogItemRepository {
 
@@ -10,7 +11,8 @@ public interface CatalogItemRepository {
 
     public Long count();
 
-    public CatalogItem findById(CatalogItemId id);
+    public Optional<CatalogItem> findById(CatalogItemId id);
+    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCrationOrder order);
 
     public List<CatalogItem> findByTitle(CatalogItemTitle title);
     public List<CatalogItem> findByGenreId(CatalogItemGenreId genre);
