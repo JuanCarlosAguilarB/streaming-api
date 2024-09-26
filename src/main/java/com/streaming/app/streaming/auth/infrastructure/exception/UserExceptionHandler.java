@@ -1,6 +1,7 @@
 package com.streaming.app.streaming.auth.infrastructure.exception;
 
 
+import com.streaming.app.streaming.auth.domain.CreadentialsNotValidException;
 import com.streaming.app.streaming.auth.domain.UserNotFoundException;
 import com.streaming.app.streaming.shared.domain.ApiExceptionResponse;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,18 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class UserExceptionHandler {
+
+    @ExceptionHandler(CreadentialsNotValidException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public ApiExceptionResponse handleBadCredentialsException(CreadentialsNotValidException ex) {
+        return new ApiExceptionResponse(
+                LocalDateTime.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                ex.getMessage()
+        );
+    }
 
 
     @ExceptionHandler(UserNotFoundException.class)
