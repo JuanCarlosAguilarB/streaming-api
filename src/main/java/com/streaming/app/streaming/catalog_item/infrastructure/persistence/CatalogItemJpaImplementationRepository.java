@@ -2,10 +2,12 @@ package com.streaming.app.streaming.catalog_item.infrastructure.persistence;
 
 import com.streaming.app.streaming.catalog_item.domain.*;
 import com.streaming.app.streaming.shared.domain.CatalogItemGenreId;
+import com.streaming.app.streaming.shared.domain.CatalogItemTypeId;
+import com.streaming.app.streaming.shared.domain.PageResult;
+import com.streaming.app.streaming.shared.domain.PaginationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import static com.streaming.app.streaming.catalog_item.infrastructure.persistence.CatalogItemMapper.toEntity;
@@ -27,10 +29,6 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
         return repository.count();
     }
 
-    @Override
-    public Optional<CatalogItem> findById(CatalogItemId id) {
-        return repository.findById(id.value()).map(CatalogItemMapper::toDomain);
-    }
 
     @Override
     public Optional<CatalogItem> findByCreatedOrder(CatalogItemCreatedOrder order) {
@@ -38,17 +36,37 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
     }
 
     @Override
-    public List<CatalogItem> findByTitle(CatalogItemTitle title) {
-        return repository.findByTitle(title.value()).stream().map(CatalogItemMapper::toDomain).toList();
+    public PageResult<CatalogItem> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest) {
+//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
+//        return PageResult.of(repository.findByTitleContainingIgnoreCase(title.value(), pageable).stream().map(CatalogItemMapper::toDomain).toList(), paginationRequest);
+        return null;
     }
 
     @Override
-    public List<CatalogItem> findByGenreId(CatalogItemGenreId genre) {
-        return repository.findByGenreId(genre.value()).stream().map(CatalogItemMapper::toDomain).toList();
+    public PageResult<CatalogItem> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest) {
+        return null;
     }
 
     @Override
-    public List<CatalogItem> findByOrderByViewsDesc() {
-        return repository.findAllByOrderByViewsDesc().stream().map(CatalogItemMapper::toDomain).toList();
+    public PageResult<CatalogItem> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
+        return null;
     }
+
+    @Override
+    public PageResult<CatalogItem> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest) {
+        return null;
+    }
+
+
+    @Override
+    public PageResult<CatalogItem> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
+        return null;
+    }
+
+    @Override
+    public PageResult<CatalogItem> findAll(PaginationRequest paginationRequest) {
+        return null;
+    }
+
+
 }
