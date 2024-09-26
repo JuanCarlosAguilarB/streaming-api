@@ -33,7 +33,7 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
     }
 
     @Override
-    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCrationOrder order) {
+    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCreatedOrder order) {
         return repository.findByCreationOrder(order.value()).map(CatalogItemMapper::toDomain);
     }
 

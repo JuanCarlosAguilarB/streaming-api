@@ -12,7 +12,7 @@ public interface CatalogItemRepository {
     public Long count();
 
     public Optional<CatalogItem> findById(CatalogItemId id);
-    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCrationOrder order);
+    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCreatedOrder order);
 
     public List<CatalogItem> findByTitle(CatalogItemTitle title);
     public List<CatalogItem> findByGenreId(CatalogItemGenreId genre);

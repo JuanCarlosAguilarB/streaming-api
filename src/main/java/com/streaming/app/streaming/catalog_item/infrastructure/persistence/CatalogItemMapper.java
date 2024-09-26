@@ -28,7 +28,7 @@ public class CatalogItemMapper {
                 new CatalogItemAverageScore(catalogItemEntity.getAverageScore()),
                 new CatalogItemDescription(catalogItemEntity.getDescription()),
                 new CatalogItemImage(catalogItemEntity.getImageUrl()),
-                new CatalogItemCrationOrder(catalogItemEntity.getCreationOrder()),
+                new CatalogItemCreatedOrder(catalogItemEntity.getCreationOrder()),
                 new CatalogItemTypeId(catalogItemEntity.getTypeId())
         );
     }

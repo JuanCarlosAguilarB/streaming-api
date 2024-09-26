@@ -17,7 +17,7 @@ public class CatalogItem {
     private CatalogItemDescription description;
     private CatalogItemImage image;
 
-    private CatalogItemCrationOrder order;
+    private CatalogItemCreatedOrder order;
 
     private CatalogItemTypeId catalogItemTypeId;
 
@@ -54,7 +54,7 @@ public class CatalogItem {
         return catalogItemTypeId;
     }
 
-    public CatalogItemCrationOrder order() {
+    public CatalogItemCreatedOrder order() {
         return order;
     }
 }
