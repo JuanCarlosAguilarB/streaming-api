@@ -1,4 +1,4 @@
-package com.streaming.app.streaming.auth.infrastructure.security;
+package com.streaming.app.streaming.auth.infrastructure.security.beans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
