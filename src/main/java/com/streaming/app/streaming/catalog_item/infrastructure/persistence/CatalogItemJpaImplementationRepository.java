@@ -13,6 +13,11 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
     }
 
     @Override
+    public int count() {
+        return 0;
+    }
+
+    @Override
     public CatalogItem findById(CatalogItemId id) {
         return null;
     }
