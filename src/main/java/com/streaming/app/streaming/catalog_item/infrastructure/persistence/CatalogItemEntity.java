@@ -28,7 +28,7 @@ public class CatalogItemEntity {
     private String description;
     private String imageUrl;
 
-    private Integer creationOrder;
+    private Long creationOrder;
 
     @ManyToOne(targetEntity = CatalogItemTypeEntity.class)
     @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
