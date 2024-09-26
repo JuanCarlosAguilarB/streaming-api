@@ -5,7 +5,7 @@ public interface AuthServices {
 
     public TokenResponse createToken(UserEmail email);
 
-    public User decode(TokenResponse token);
+    public User decode(TokenResponse token) throws UserNotFoundException;
 
     public void ensureCredentialsAreValid(UserEmail userName, UserPassword password) throws CreadentialsNotValidException;
 

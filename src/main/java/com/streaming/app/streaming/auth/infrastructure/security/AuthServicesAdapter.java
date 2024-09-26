@@ -77,7 +77,7 @@ public class AuthServicesAdapter implements AuthServices {
     }
 
     @Override
-    public User decode(TokenResponse token) {
+    public User decode(TokenResponse token) throws UserNotFoundException {
         DecodedJWT decodedJWT = JWT.decode(token.getToken());
         return userFinder.findByEmail(new UserEmail(decodedJWT.getSubject()));
     }
