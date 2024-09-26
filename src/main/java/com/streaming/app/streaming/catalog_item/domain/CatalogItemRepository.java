@@ -6,7 +6,7 @@ public interface CatalogItemRepository {
 
     public void save(CatalogItem catalogItem);
 
-    public int count();
+    public Long count();
 
     public CatalogItem findById(CatalogItemId id);
 
