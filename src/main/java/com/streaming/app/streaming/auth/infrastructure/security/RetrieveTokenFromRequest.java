@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.annotation.RequestScope;
 
 @AllArgsConstructor
 @Service
+@RequestScope
 public class RetrieveTokenFromRequest {
 
     private final HttpServletRequest request;

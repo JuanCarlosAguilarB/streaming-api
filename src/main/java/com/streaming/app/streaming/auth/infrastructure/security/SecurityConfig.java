@@ -49,5 +49,4 @@ public class SecurityConfig {
                                 .authenticationEntryPoint(authEntryPoint))
                 .build();
     }
-
 }

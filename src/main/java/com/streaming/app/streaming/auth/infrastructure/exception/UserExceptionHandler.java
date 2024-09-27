@@ -1,10 +1,7 @@
 package com.streaming.app.streaming.auth.infrastructure.exception;
 
 
-import com.streaming.app.streaming.auth.domain.CreadentialsNotValidException;
-import com.streaming.app.streaming.auth.domain.DuplicateEmailException;
-import com.streaming.app.streaming.auth.domain.TokenException;
-import com.streaming.app.streaming.auth.domain.UserNotFoundException;
+import com.streaming.app.streaming.auth.domain.*;
 import com.streaming.app.streaming.shared.domain.ApiExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -70,5 +67,15 @@ public class UserExceptionHandler {
     }
 
 
-
+    @ExceptionHandler(UserEmailException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ApiExceptionResponse handleUserEmailException(UserEmailException ex) {
+        return new ApiExceptionResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                ex.getMessage()
+        );
+    }
 }
