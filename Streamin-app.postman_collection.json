@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "23a2f6bd-7d0e-4f42-8f00-5868474ff1c2",
+		"name": "Streamin-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23108580"
+	},
+	"item": [
+		{
+			"name": "Create an User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"string_seguro@gmail.com\",\n  \"password\": \"string seguro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/signup/b6908deb-e0e7-437a-8ac8-1296cedcddf9/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"signup",
+						"b6908deb-e0e7-437a-8ac8-1296cedcddf9",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"string_seguro@gmail.com\",\n  \"password\": \"string seguro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/signup/b6908deb-e0e7-437a-8ac8-1296cedcddf9/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"signup",
+								"b6908deb-e0e7-437a-8ac8-1296cedcddf9",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 06:41:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login of User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"string_seguro@gmail.com\",\n  \"password\": \"string seguro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/login/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"string_seguro@gmail.com\",\n  \"password\": \"string seguro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 06:43:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxODEzODEzMjAwfQ.sxhkbIIbwVxMTS7L79ZDMwZubPwDWKzn2a9qCL2c_Gg\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxNzI4MzYzNjAwfQ.8yGzZtGelB086DopPtHNhbm8bUcSXM4iNQeUTisqn1Q\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Catalog items types",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxODEzODEzMjAwfQ.sxhkbIIbwVxMTS7L79ZDMwZubPwDWKzn2a9qCL2c_Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/catalog-item/types/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"catalog-item",
+						"types",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/catalog-item/types/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"catalog-item",
+								"types",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 07:32:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Movie\",\n        \"description\": \"A motion picture\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Series\",\n        \"description\": \"A television series\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get genres",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxODEzODEzMjAwfQ.sxhkbIIbwVxMTS7L79ZDMwZubPwDWKzn2a9qCL2c_Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/catalog-item/genres/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"catalog-item",
+						"genres",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/catalog-item/genres/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"catalog-item",
+								"genres",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 07:50:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Action\",\n        \"description\": \"Action-packed movies\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Drama\",\n        \"description\": \"Dramatic movies or series\"\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Comedy\",\n        \"description\": \"Comedic movies or series\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Catalog items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxODEzODEzMjAwfQ.sxhkbIIbwVxMTS7L79ZDMwZubPwDWKzn2a9qCL2c_Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/catalog-item/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"catalog-item",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/catalog-item/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"catalog-item",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 18:07:15 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": \"aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n            \"title\": \"Action Movie 1\",\n            \"views\": 0,\n            \"averageScore\": null,\n            \"description\": \"An exciting action movie\",\n            \"imageUrl\": \"http://example.com/action1.jpg\",\n            \"creationOrder\": 1,\n            \"genre\": \"Action\",\n            \"type\": \"Movie\"\n        },\n        {\n            \"id\": \"ccccccc3-cccc-cccc-cccc-cccccccccccc\",\n            \"title\": \"Comedy Movie 1\",\n            \"views\": 0,\n            \"averageScore\": null,\n            \"description\": \"A funny comedy movie\",\n            \"imageUrl\": \"http://example.com/comedy1.jpg\",\n            \"creationOrder\": 3,\n            \"genre\": \"Comedy\",\n            \"type\": \"Movie\"\n        },\n        {\n            \"id\": \"bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n            \"title\": \"Drama Series 1\",\n            \"views\": 0,\n            \"averageScore\": null,\n            \"description\": \"A captivating drama series\",\n            \"imageUrl\": \"http://example.com/drama1.jpg\",\n            \"creationOrder\": 2,\n            \"genre\": \"Drama\",\n            \"type\": \"Series\"\n        }\n    ],\n    \"pageNumber\": 1,\n    \"pageSize\": 10,\n    \"totalElements\": 3,\n    \"totalPages\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Random",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmdfc2VndXJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzQxMzIwMCwiZXhwIjoxODEzODEzMjAwfQ.sxhkbIIbwVxMTS7L79ZDMwZubPwDWKzn2a9qCL2c_Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/catalog-item/random/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"catalog-item",
+						"random",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/catalog-item/random/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"catalog-item",
+								"random",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Sep 2024 18:07:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n    \"title\": \"Drama Series 1\",\n    \"views\": 0,\n    \"averageScore\": null,\n    \"description\": \"A captivating drama series\",\n    \"imageUrl\": \"http://example.com/drama1.jpg\",\n    \"creationOrder\": 2,\n    \"genre\": \"Drama\",\n    \"type\": \"Series\"\n}"
+				}
+			]
+		}
+	]
+}
