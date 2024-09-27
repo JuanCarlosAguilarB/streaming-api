@@ -6,6 +6,9 @@ import com.streaming.app.streaming.shared.domain.CatalogItemTypeId;
 import com.streaming.app.streaming.shared.domain.PageResult;
 import com.streaming.app.streaming.shared.domain.PaginationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -31,42 +34,71 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
 
 
     @Override
-    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCreatedOrder order) {
-        return repository.findByCreationOrder(order.value()).map(CatalogItemMapper::toDomain);
+    public Optional<CatalogItemResponse> findByCreatedOrder(CatalogItemCreatedOrder order) {
+        return repository.findByCreationOrder(order.value()).map(CatalogItemMapper::toResponse);
     }
 
     @Override
-    public PageResult<CatalogItem> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest) {
+    public PageResult<CatalogItemResponse> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest) {
 //        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
 //        return PageResult.of(repository.findByTitleContainingIgnoreCase(title.value(), pageable).stream().map(CatalogItemMapper::toDomain).toList(), paginationRequest);
         return null;
     }
 
     @Override
-    public PageResult<CatalogItem> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest) {
+    public PageResult<CatalogItemResponse> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest) {
         return null;
     }
 
     @Override
-    public PageResult<CatalogItem> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
+    public PageResult<CatalogItemResponse> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
         return null;
     }
 
     @Override
-    public PageResult<CatalogItem> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest) {
+    public PageResult<CatalogItemResponse> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest) {
         return null;
     }
 
 
     @Override
-    public PageResult<CatalogItem> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
+    public PageResult<CatalogItemResponse> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
         return null;
     }
 
     @Override
-    public PageResult<CatalogItem> findAll(PaginationRequest paginationRequest) {
-        return null;
+    public PageResult<CatalogItemResponse> findAll(PaginationRequest paginationRequest) {
+        Sort sort = getSort(paginationRequest.getSortBy());
+        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
+        repository.findAll(pageable).stream().map(CatalogItemMapper::toResponse).toList();
+
+        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
+                repository.findAll(pageable).stream().map(CatalogItemMapper::toResponse).toList(),
+                paginationRequest.getPage(),
+                paginationRequest.getSize(),
+                repository.count()
+        );
+
+        return response;
     }
 
+    private Sort getSort(String sortBy) {
+            if (sortBy.equals("title")) {
+                return Sort.by(Sort.Direction.ASC, "title");
+            }
+            if (sortBy.equals("genreId")) {
+                return Sort.by(Sort.Direction.ASC, "genreId");
+            }
+            if (sortBy.equals("typeId")) {
+                return Sort.by(Sort.Direction.ASC, "typeId");
+            }
+            if (sortBy.equals("averageScore")) {
+                return Sort.by(Sort.Direction.DESC, "averageScore");
+            }
+            if (sortBy.equals("created")) {
+                return Sort.by(Sort.Direction.DESC, "created");
+            }
+        return Sort.by(Sort.Direction.ASC, "title");
+    }
 
 }

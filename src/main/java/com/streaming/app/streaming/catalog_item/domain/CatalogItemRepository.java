@@ -14,14 +14,14 @@ public interface CatalogItemRepository {
     public Long count();
 
 //    public Optional<CatalogItem> findById(CatalogItemId id);
-    public Optional<CatalogItem> findByCreatedOrder(CatalogItemCreatedOrder order);
+    public Optional<CatalogItemResponse> findByCreatedOrder(CatalogItemCreatedOrder order);
 
-    public PageResult<CatalogItem> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest);
-    public PageResult<CatalogItem> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest);
-    public PageResult<CatalogItem> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest);
-    public PageResult<CatalogItem> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest);
-    public PageResult<CatalogItem> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest);
 
-    public PageResult<CatalogItem> findAll(PaginationRequest paginationRequest);
+    public PageResult<CatalogItemResponse> findAll(PaginationRequest paginationRequest);
 
 }

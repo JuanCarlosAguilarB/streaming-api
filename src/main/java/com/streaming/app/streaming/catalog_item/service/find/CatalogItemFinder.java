@@ -17,7 +17,7 @@ public class CatalogItemFinder {
     private final CatalogItemRepository repository;
 
     // TODO: I need to add filters to findRandomCatalogItem, (score, type, genre)
-    public CatalogItem findRandomCatalogItem() {
+    public CatalogItemResponse findRandomCatalogItem() {
 
         long total = (repository.count() > 0) ? repository.count() : 2;
         long random = generateRandomValue(1, total);
@@ -27,7 +27,7 @@ public class CatalogItemFinder {
 
     }
 
-    public PageResult<CatalogItem> getAllItems(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, CatalogItemAverageScore score, PaginationRequest pageRequest) {
+    public PageResult<CatalogItemResponse> getAllItems(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, CatalogItemAverageScore score, PaginationRequest pageRequest) {
 
         // filter score by interval
         if (score != null) {
@@ -47,6 +47,7 @@ public class CatalogItemFinder {
             return repository.findByGenreId(genreId, pageRequest);
         }
 
+        System.out.println("No filter");
         return repository.findAll(pageRequest);
     }
 

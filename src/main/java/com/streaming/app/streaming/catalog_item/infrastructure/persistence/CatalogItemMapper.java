@@ -16,6 +16,8 @@ public class CatalogItemMapper {
                 .views(catalogItem.views().value())
                 .averageScore(catalogItem.averageScore().value())
                 .creationOrder(catalogItem.order().value())
+                .typeId(catalogItem.catalogItemTypeId().value())
+                .imageUrl(catalogItem.image().value())
                 .build();
     }
 
@@ -32,4 +34,19 @@ public class CatalogItemMapper {
                 new CatalogItemTypeId(catalogItemEntity.getTypeId())
         );
     }
+
+    public static CatalogItemResponse toResponse(CatalogItemEntity entity) {
+        return CatalogItemResponse.builder()
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .description(entity.getDescription())
+                .genre(entity.getGenre().getName())
+                .views(entity.getViews())
+                .averageScore(entity.getAverageScore())
+                .creationOrder(entity.getCreationOrder())
+                .type(entity.getType().getName())
+                .imageUrl(entity.getImageUrl())
+                .build();
+    }
+
 }
