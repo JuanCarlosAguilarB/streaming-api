@@ -16,6 +16,7 @@ public class GetCatalogItemType {
     @Operation(summary = "Get all types", description = "Get all types", tags = {"Types"})
     @GetMapping("/v1/catalog-item/types/")
     public ResponseEntity<?> getCatalogItemGenre() {
+        System.out.println(service.findAll());
         return ResponseEntity.ok(service.findAll());
     }
 
