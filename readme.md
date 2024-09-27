@@ -1,7 +1,3 @@
-Here's the content for your `README.md` file based on your project requirements:
-
----
-
 # Streaming Platform API
 
 This project is a backend API for a streaming platform built using Spring Boot. It implements various functionalities like retrieving movies or series, rating them, and marking them as viewed. The API is documented using Swagger and can be tested through the provided endpoints.
