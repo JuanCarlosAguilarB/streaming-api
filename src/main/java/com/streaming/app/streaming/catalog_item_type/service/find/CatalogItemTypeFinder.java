@@ -1,6 +1,6 @@
 package com.streaming.app.streaming.catalog_item_type.service.find;
 
-import com.streaming.app.streaming.catalog_item.domain.CatalogItemTypeResponse;
+import com.streaming.app.streaming.catalog_item_type.domain.CatalogItemTypeResponse;
 import com.streaming.app.streaming.catalog_item_type.domain.CatalogItemTypeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

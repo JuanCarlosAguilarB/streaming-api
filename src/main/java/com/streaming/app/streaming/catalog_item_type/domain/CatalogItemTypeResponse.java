@@ -1,6 +1,5 @@
-package com.streaming.app.streaming.catalog_item.domain;
+package com.streaming.app.streaming.catalog_item_type.domain;
 
-import com.streaming.app.streaming.catalog_item_type.domain.CatalogItemType;
 import lombok.Builder;
 import lombok.Data;
 
