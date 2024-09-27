@@ -33,7 +33,7 @@ public class AuthPutController {
                 new UserPassword(request.getPassword())
         );
 
-        return ResponseEntity.ok(Map.of("message", "UserDetail created successfully"));
+        return ResponseEntity.ok(Map.of("message", "User created successfully"));
     }
 
 }
@@ -42,8 +42,6 @@ public class AuthPutController {
 @Builder
 @Data
 class UserRequest {
-
     private String email;
-    private String userName;
     private String password;
 }
