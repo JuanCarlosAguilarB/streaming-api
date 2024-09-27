@@ -9,6 +9,7 @@ import com.streaming.app.streaming.auth.infrastructure.security.RetrieveTokenFro
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class BeanUserId {
     private final RetrieveTokenFromRequest retrieveTokenservice;
 
     @Bean
+    @RequestScope
     public UserUserId getUserId() {
 
         String token = retrieveTokenservice.execute();
