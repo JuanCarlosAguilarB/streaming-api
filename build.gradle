@@ -39,6 +39,10 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-core:6.2.4'
+
+	// database migration - flyway
+	implementation 'org.flywaydb:flyway-core:10.18.2'
+	runtimeOnly 'org.flywaydb:flyway-database-postgresql:10.18.2'
 }
 
 tasks.named('test') {

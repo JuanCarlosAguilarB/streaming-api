@@ -50,6 +50,59 @@ This structure makes it easy to query, ensures data integrity, and keeps the sch
    http://localhost:8080/api-docs/swagger-ui.html
    ```
 
+---
+## Database Migrations with Flyway
+
+This project uses **Flyway** for database migrations. Flyway is configured to automatically manage and apply migrations to the PostgreSQL database each time the application starts.
+
+### Naming Convention for Migration Files
+
+Flyway expects migration files to follow a specific naming convention in order to correctly identify and apply migrations in the right order.
+
+- **Migration files** should be placed in the `src/main/resources/db/migration` directory.
+- The naming convention for migration files is:
+  ```
+  V{version_number}__{description}.sql
+  ```
+  For example:
+  ```
+  V1__initial_schema.sql
+  V2__add_user_table.sql
+  V3__add_ratings_table.sql
+  ```
+
+   - `V`: Prefix indicating a versioned migration.
+   - `{version_number}`: The version number of the migration, used to order the migrations. It must be sequential.
+   - `{description}`: A short description of the migration, separated from the version by double underscores (`__`).
+
+Flyway will automatically detect new migrations and apply them based on the version number.
+
+### Adding Test Data with `V3_data_for_test.sql`
+
+If you need to load test data into the database (for development or testing purposes), you can use a script called `V3_data_for_test.sql`. This script is intended to insert test data and should **not** be part of the normal migrations.
+
+To use `V3_data_for_test.sql` for loading test data, follow these steps:
+
+1. **Place the `V3_data_for_test.sql` file** in the `src/main/resources/db/test-data/` directory (or another directory of your choice).
+
+2. **Execute the data.sql script** manually when needed, by running the following command:
+
+   ```bash
+   psql -h localhost -p 5433 -U your_username -d your_database_name -f src/main/resources/db/test-data/V3_data_for_test.sql
+   ```
+
+   Alternatively, if using Docker, you can execute it like this:
+
+   ```bash
+   docker exec -i <container_name> psql -U your_username -d your_database_name < src/main/resources/db/test-data/data.sql
+   ```
+
+3. This ensures that the test data is only applied when explicitly needed and does not interfere with Flyway's automatic migrations.
+
+> **Note:** It is important that `V3_data_for_test.sql` is used only for testing and development purposes and should not be part of production migrations.
+
+---
+
 ### Docker Compose Configuration
 
 If you don’t have it, create a `docker-compose.yml` file with the following content to run a PostgreSQL container:
@@ -58,7 +111,7 @@ If you don’t have it, create a `docker-compose.yml` file with the following co
 version: '3'
 services:
   postgres:
-    image: postgres:13
+    image: postgres:16.3-alpine
     environment:
       POSTGRES_USER: your_username
       POSTGRES_PASSWORD: your_password
