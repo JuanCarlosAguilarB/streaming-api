@@ -161,6 +161,3 @@ To run the tests:
 - **Swagger**: API documentation and testing tool.
 - **Docker**: For containerized PostgreSQL setup.
 
----
-
-This README provides the necessary information on the database structure, project setup, running instructions, and endpoint documentation for your project. You can extend or modify this based on your specific needs!
