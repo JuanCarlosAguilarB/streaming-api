@@ -25,13 +25,13 @@ public class GetCatalogItem {
 
 
     @Operation(summary = "Get random catalog item", description = "Get random catalog item", tags = {"Catalog Item"})
-    @GetMapping("/v1/catalog-item/random/")
+    @GetMapping("/v1/catalog-items/random/")
     public ResponseEntity<?> getRandomCatalogItem() {
         return ResponseEntity.ok(service.findRandomCatalogItem());
     }
 
     @Operation(summary = "Get catalog items", description = "Get catalog items", tags = {"Catalog Item"})
-    @GetMapping("/v1/catalog-item/")
+    @GetMapping("/v1/catalog-items/")
     public ResponseEntity<?> getCatalogItems(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) Integer typeId,
@@ -63,20 +63,20 @@ public class GetCatalogItem {
         return ResponseEntity.ok(items);
     }
 }
-//
-//enum CatalogSort {
-//    NAME("name"),
-//    TYPE("type"),
-//    GENRE("genre"),
-//    SCORE("score");
-//
-//    private final String fieldName;
-//
-//    CatalogSort(String fieldName) {
-//        this.fieldName = fieldName;
-//    }
-//
-//    public String getFieldName() {
-//        return this.fieldName;
-//    }
-//}
+
+enum CatalogSort {
+    NAME("name"),
+    TYPE("type"),
+    GENRE("genre"),
+    SCORE("score");
+
+    private final String fieldName;
+
+    CatalogSort(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public String getFieldName() {
+        return this.fieldName;
+    }
+}
