@@ -55,7 +55,7 @@ public class GetCatalogItem {
         PageResult<CatalogItemResponse> items = service.getAllItems(
                 title != null ? new CatalogItemTitle(title) : null,
                 genreId != null ? new CatalogItemGenreId(genreId) : null,
-                title != null ? new CatalogItemTypeId(typeId) : null,
+                typeId != null ? new CatalogItemTypeId(typeId) : null,
                 score != null ? new CatalogItemAverageScore(score) : null,
                 pagination
         );
