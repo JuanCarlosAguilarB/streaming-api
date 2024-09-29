@@ -35,6 +35,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                                 authRequest
                                         .requestMatchers(HttpMethod.PUT, "/v1/signup/{userId}/").permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/v1/catalog-items/").permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/v1/catalog-items/random/").permitAll()
                                         .requestMatchers("/v1/login/").permitAll()
                                         .requestMatchers("/api-docs/**").permitAll()
                                         .anyRequest().authenticated()
