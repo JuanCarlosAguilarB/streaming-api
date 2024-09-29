@@ -16,6 +16,7 @@ public interface CatalogItemJpaRepository extends JpaRepository<CatalogItemEntit
     Page<CatalogItemEntity> findByGenreId(Integer genreId, Pageable pageable);
     Page<CatalogItemEntity> findByAverageScore(Integer score, Pageable pageable);
 
-
+    Page<CatalogItemEntity> findByTitleAndTypeIdAndGenreId(String title,Integer typeId, Integer genreId, Pageable pageable);
+    Page<CatalogItemEntity> findByAverageScoreBetween(Double minScore, Double maxScore, Pageable pageable);
 
 }
