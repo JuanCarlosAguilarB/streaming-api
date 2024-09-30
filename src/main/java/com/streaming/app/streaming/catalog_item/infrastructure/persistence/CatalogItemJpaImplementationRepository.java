@@ -1,18 +1,27 @@
 package com.streaming.app.streaming.catalog_item.infrastructure.persistence;
 
-import com.streaming.app.streaming.catalog_item.domain.*;
-import com.streaming.app.streaming.shared.domain.CatalogItemGenreId;
-import com.streaming.app.streaming.shared.domain.CatalogItemTypeId;
+import com.streaming.app.streaming.catalog_item.domain.CatalogItem;
+import com.streaming.app.streaming.catalog_item.domain.CatalogItemCreatedOrder;
+import com.streaming.app.streaming.catalog_item.domain.CatalogItemRepository;
+import com.streaming.app.streaming.catalog_item.domain.CatalogItemResponse;
 import com.streaming.app.streaming.shared.domain.PageResult;
 import com.streaming.app.streaming.shared.domain.PaginationRequest;
+import com.streaming.app.streaming.shared.domain.filter.Filter;
+import com.streaming.app.streaming.shared.domain.sort.SortBy;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static com.streaming.app.streaming.catalog_item.infrastructure.persistence.CatalogItemMapper.toEntity;
 
@@ -35,130 +44,65 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
     }
 
 
-    @Override
-    public Optional<CatalogItemResponse> findByCreatedOrder(CatalogItemCreatedOrder order) {
-        return repository.findByCreationOrder(order.value()).map(CatalogItemMapper::toResponse);
-    }
-
-    @Override
-    public PageResult<CatalogItemResponse> findByTitle(CatalogItemTitle title, PaginationRequest paginationRequest) {
-
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy(), ));
-//
-//        Page<CatalogItemEntity> page = repository.findByTitleContainingIgnoreCase(title.value(), pageable);
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-//
-//        return response;
-        return null;
-    }
-
-    @Override
-    public PageResult<CatalogItemResponse> findByGenreId(CatalogItemGenreId genreId, PaginationRequest paginationRequest) {
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
-//        Page<CatalogItemEntity> page = repository.findByGenreId(genreId.value(), pageable);
-//
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-//
-//        return response;
-        return null;
-    }
-
-    @Override
-    public PageResult<CatalogItemResponse> findByTypeId(CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
-//        Page<CatalogItemEntity> page = repository.findByTypeId(typeId.value(), pageable);
-//
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-        return null;
-//        return response;
-    }
-
-    @Override
-    public PageResult<CatalogItemResponse> findByAverageScoreBetween(CatalogItemAverageScore minScore, CatalogItemAverageScore maxScore, PaginationRequest paginationRequest) {
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
-//        Page<CatalogItemEntity> page = repository.findByAverageScoreBetween(minScore.value(), maxScore.value(), pageable);
-//
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-//
-//        return response;
-    return null;
-
-    }
-
-
-    @Override
-    public PageResult<CatalogItemResponse> findByTitleAndTypeIdAndGenreId(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, PaginationRequest paginationRequest) {
-
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
-//        Page<CatalogItemEntity> page = repository.findByTitleAndTypeIdAndGenreId(title.value(), typeId.value(), genreId.value(), pageable);
-//
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-        return null;
-//        return response;
-    }
-
 //    @Override
-//    public PageResult<CatalogItemResponse> findAll(PaginationRequest paginationRequest) {
+//    public Optional<CatalogItemResponse> findByCreatedOrder(CatalogItemCreatedOrder order, Optional<List<Filter>> filters) {
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<CatalogItemEntity> cq = cb.createQuery(CatalogItemEntity.class);
+//        Root<CatalogItemEntity> catalogItem = cq.from(CatalogItemEntity.class);
 //
-//        HashMap<String, String> sort = getSort(paginationRequest.getSortBy(), paginationRequest.getSort());
-//        HashMap<String, Object> filter = getFilter(paginationRequest.getFilters());
+//        List<Predicate> predicates = new ArrayList<>();
 //
-//        Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize(), getSort(paginationRequest.getSortBy()));
+//        predicates.add(cb.equal(catalogItem.get("creationOrder"), order.value()));
 //
+//        if (filters.isPresent()) {
+//            predicates.addAll(Arrays.asList(buildFilters(cb, catalogItem, filters.get())));
+//        }
 //
+//        cq.where(predicates.toArray(new Predicate[0]));
 //
-//        Page<CatalogItemEntity> page = repository.findAll(pageable);
+//        TypedQuery<CatalogItemEntity> query = entityManager.createQuery(cq);
+//        query.setMaxResults(1);  // Limitar el resultado a uno
 //
-//        PageResult<CatalogItemResponse> response = new PageResult<CatalogItemResponse>(
-//                page.stream().map(CatalogItemMapper::toResponse).toList(),
-//                paginationRequest.getPage(),
-//                paginationRequest.getSize(),
-//                page.getTotalElements()
-//        );
-//
-//        return response;
+//        return query.getResultList().stream().findFirst().map(CatalogItemMapper::toResponse);
 //    }
 
     @Override
+    public Optional<CatalogItemResponse> findByCreatedOrder(CatalogItemCreatedOrder order, Optional<List<Filter>> filters) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CatalogItemEntity> cq = cb.createQuery(CatalogItemEntity.class);
+        Root<CatalogItemEntity> catalogItem = cq.from(CatalogItemEntity.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (filters.isPresent() && !filters.get().isEmpty()) {
+            predicates.addAll(Arrays.asList(buildFilters(cb, catalogItem, filters.get())));
+
+            cq.orderBy(cb.asc(cb.function("RANDOM", Double.class)));  // Función RANDOM() con asc para orden aleatorio
+        } else {
+            predicates.add(cb.equal(catalogItem.get("creationOrder"), order.value()));
+
+            cq.orderBy(cb.asc(catalogItem.get("creationOrder")));
+        }
+
+        cq.where(predicates.toArray(new Predicate[0]));
+
+        TypedQuery<CatalogItemEntity> query = entityManager.createQuery(cq);
+        query.setMaxResults(1);  // Limitar el resultado a 1
+
+        return query.getResultList().stream().findFirst().map(CatalogItemMapper::toResponse);
+    }
+
+
+
+    @Override
     public PageResult<CatalogItemResponse> findAll(PaginationRequest paginationRequest) {
-        HashMap<String, String> sort = getSort(paginationRequest.getSortBy(), paginationRequest.getSort());
-        HashMap<String, Object> filter = getFilter(paginationRequest.getFilters());
 
-        System.out.println(paginationRequest.getFilters());
-//        System.out.println(sort);
-        System.out.println(filter);
-//        System.out.println(paginationRequest.getSortBy());
-//        System.out.println(paginationRequest.getSort());
-
+        SortBy sort = paginationRequest.getSort();
+        List<Filter> filters = paginationRequest.getFilters();
 
         Pageable pageable = PageRequest.of(paginationRequest.getPage(), paginationRequest.getSize());
 
-        Page<CatalogItemEntity> page = findWithFiltersAndSort(filter, sort, pageable);
+        Page<CatalogItemEntity> page = findWithFiltersAndSort(filters, sort, pageable);
 
         PageResult<CatalogItemResponse> response = new PageResult<>(
                 page.stream().map(CatalogItemMapper::toResponse).toList(),
@@ -170,59 +114,30 @@ public class CatalogItemJpaImplementationRepository implements CatalogItemReposi
         return response;
     }
 
-    private HashMap<String, String> getSort(String sortBy, String sortDirection) {
-        HashMap<String, String> sortByMap = new HashMap<>();
-
-        if (sortDirection == null || (!sortDirection.equals("ASC") && !sortDirection.equals("DESC"))) {
-            sortDirection = "DESC";
-        }
-
-        if (sortBy == null || sortBy.isEmpty()) {
-            sortByMap.put("title", sortDirection);
-            return sortByMap;
-        }
-
-        if (sortBy.equals("title") || sortBy.equals("genreId") || sortBy.equals("typeId") || sortBy.equals("averageScore")) {
-            sortByMap.put(sortBy, sortDirection);
-        } else {
-            sortByMap.put("title", sortDirection);
-        }
-
-        return sortByMap;
-    }
-
-private HashMap<String, Object> getFilter(HashMap<String, Object> filters) {
-    HashMap<String, Object> filterByMap = new HashMap<>();
-
-    filters.forEach((key, value) -> {
-        switch (key) {
-            case "title":
-                ensureNotSqlInjection((String) value);
-                filterByMap.put(key, (String) value);
-                break;
-            case "genreId":
-                filterByMap.put(key, (Integer) value);
-                break;
-            case "typeId":
-                filterByMap.put(key, (Integer) value);
-                break;
-            case "averageScore":
-                filterByMap.put(key, (Double) value);
-                break;
-        };
-      });
-    return filterByMap;
-
-    }
-
-    private void ensureNotSqlInjection(String value) {
-        if (value.contains(";") || value.contains("'") || value.contains("\"")) {
-            throw new IllegalArgumentException("Name cannot contain illegal characters");
-        }
-    }
+//    private HashMap<String, String> getSort(String sortBy, String sortDirection) {
+//        HashMap<String, String> sortByMap = new HashMap<>();
+//
+//        if (sortDirection == null || (!sortDirection.equals("ASC") && !sortDirection.equals("DESC"))) {
+//            sortDirection = "DESC";
+//        }
+//
+//        if (sortBy == null || sortBy.isEmpty()) {
+//            sortByMap.put("title", sortDirection);
+//            return sortByMap;
+//        }
+//
+//        if (sortBy.equals("title") || sortBy.equals("genreId") || sortBy.equals("typeId") || sortBy.equals("averageScore")) {
+//            sortByMap.put(sortBy, sortDirection);
+//        } else {
+//            sortByMap.put("title", sortDirection);
+//        }
+//
+//        return sortByMap;
+//    }
 
 
-    public Page<CatalogItemEntity> findWithFiltersAndSort(HashMap<String, Object> filters, HashMap<String, String> sort, Pageable pageable) {
+    public Page<CatalogItemEntity> findWithFiltersAndSort(List<Filter> filters, SortBy sort, Pageable pageable) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<CatalogItemEntity> cq = cb.createQuery(CatalogItemEntity.class);
         Root<CatalogItemEntity> catalogItem = cq.from(CatalogItemEntity.class);
@@ -231,16 +146,14 @@ private HashMap<String, Object> getFilter(HashMap<String, Object> filters) {
         Predicate[] predicates = buildFilters(cb, catalogItem, filters);
         cq.where(predicates);
 
-        // Apply dynamic sorting
-        if (!sort.isEmpty()) {
+        if (sort != null) {
             List<Order> orders = new ArrayList<>();
-            sort.forEach((field, direction) -> {
-                if (direction.equalsIgnoreCase("ASC")) {
-                    orders.add(cb.asc(catalogItem.get(field)));
-                } else {
-                    orders.add(cb.desc(catalogItem.get(field)));
-                }
-            });
+            if (sort.direction().equalsIgnoreCase("ASC")) {
+                orders.add(cb.asc(catalogItem.get(sort.sort())));
+            } else {
+                orders.add(cb.desc(catalogItem.get(sort.sort())));
+            }
+
             cq.orderBy(orders);
         }
 
@@ -255,23 +168,27 @@ private HashMap<String, Object> getFilter(HashMap<String, Object> filters) {
         return new PageImpl<>(resultList, pageable, totalRecords);
     }
 
-    private Predicate[] buildFilters(CriteriaBuilder cb, Root<CatalogItemEntity> root, HashMap<String, Object> filters) {
+    private Predicate[] buildFilters(CriteriaBuilder cb, Root<CatalogItemEntity> root, List<Filter> filters) {
         List<Predicate> predicates = new ArrayList<>();
 
-        filters.forEach((key, value) -> {
-            switch (key) {
+        filters.forEach((filter) -> {
+            switch (filter.name()) {
                 case "title":
 //                    predicates.add(cb.like(root.get("title"), "%" + value + "%"));
-                    predicates.add(cb.like(cb.lower(root.get("title")), "%" + value.toString().toLowerCase() + "%"));
+                    predicates.add(cb.like(cb.lower(root.get("title")), "%" + filter.value().toString().toLowerCase() + "%"));
                     break;
                 case "genreId":
-                    predicates.add(cb.equal(root.get("genreId"), value));
+                    predicates.add(cb.equal(root.get("genreId"), filter.value()));
                     break;
                 case "typeId":
-                    predicates.add(cb.equal(root.get("typeId"), value));
+                    predicates.add(cb.equal(root.get("typeId"), filter.value()));
                     break;
                 case "averageScore":
-                    predicates.add(cb.greaterThanOrEqualTo(root.get("averageScore"), (Double) value));
+//                    predicates.add(cb.greaterThanOrEqualTo(root.get("averageScore"), (Double) filter.value()));
+
+                    Double minScore = (double) filter.value();
+                    Double maxScore = minScore + 0.99;
+                    predicates.add(cb.between(root.get("averageScore"), minScore, maxScore));
                     break;
                 default:
                     break;
@@ -281,7 +198,7 @@ private HashMap<String, Object> getFilter(HashMap<String, Object> filters) {
         return predicates.toArray(new Predicate[0]);
     }
 
-    private long countTotalRecords(HashMap<String, Object> filters) {
+    private long countTotalRecords(List<Filter> filters) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<CatalogItemEntity> root = cq.from(CatalogItemEntity.class);

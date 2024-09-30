@@ -8,7 +8,6 @@ import com.streaming.app.streaming.auth.domain.UserUserId;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.Optional;
 
 import static com.streaming.app.streaming.auth.infrastructure.persistence.UserMapper.toEntity;

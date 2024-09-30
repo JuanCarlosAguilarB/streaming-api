@@ -4,7 +4,6 @@ import com.streaming.app.streaming.auth.application.find.UserFinder;
 import com.streaming.app.streaming.auth.domain.User;
 import com.streaming.app.streaming.auth.domain.UserEmail;
 import com.streaming.app.streaming.auth.domain.UserNotFoundException;
-import com.streaming.app.streaming.auth.domain.UserUserId;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

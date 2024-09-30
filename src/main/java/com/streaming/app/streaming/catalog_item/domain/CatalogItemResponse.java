@@ -1,7 +1,5 @@
 package com.streaming.app.streaming.catalog_item.domain;
 
-import com.streaming.app.streaming.catalog_item.infrastructure.persistence.CatalogItemEntity;
-import com.streaming.app.streaming.catalog_item_genre.domain.CatalogItemGenre;
 import com.streaming.app.streaming.catalog_item_genre.domain.CatalogItemGenreName;
 import com.streaming.app.streaming.catalog_item_type.domain.CatalogItemTypeName;
 import lombok.Builder;

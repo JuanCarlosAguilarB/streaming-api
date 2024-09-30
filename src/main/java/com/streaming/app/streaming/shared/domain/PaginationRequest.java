@@ -1,8 +1,10 @@
 package com.streaming.app.streaming.shared.domain;
 
+import com.streaming.app.streaming.shared.domain.filter.Filter;
+import com.streaming.app.streaming.shared.domain.sort.SortBy;
 import lombok.Data;
 
-import java.util.HashMap;
+import java.util.List;
 
 
 @Data
@@ -11,11 +13,11 @@ public class PaginationRequest {
     private int page;
     private int size;
     private String sortBy;
-    private HashMap<String, Object> filters;
-    private String sort;
+    private List<Filter> filters;
+    private SortBy sort;
 
 
-    public PaginationRequest(int pageNumber, int pageSize, String sortBy, String sort, HashMap<String, Object> filters) {
+    public PaginationRequest(int pageNumber, int pageSize, String sortBy, SortBy sort, List<Filter> filters) {
         this.filters = filters;
         this.sort = sort;
         this.sortBy = sortBy;
@@ -23,7 +25,7 @@ public class PaginationRequest {
         this.size = pageSize;
     }
 
-    public PaginationRequest(int pageNumber, int pageSize, String sortBy, String sort) {
+    public PaginationRequest(int pageNumber, int pageSize, String sortBy, SortBy sort) {
         this.sort = sort;
         this.sortBy = sortBy;
         this.page = pageNumber;
