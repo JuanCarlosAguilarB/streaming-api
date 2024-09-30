@@ -7,6 +7,9 @@ import com.streaming.app.streaming.shared.domain.PageResult;
 import com.streaming.app.streaming.shared.domain.PaginationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
 
 import static com.streaming.app.streaming.shared.domain.GeneratorRandomValues.generateRandomValue;
 
@@ -27,27 +30,28 @@ public class CatalogItemFinder {
 
     }
 
-    public PageResult<CatalogItemResponse> getAllItems(CatalogItemTitle title, CatalogItemGenreId genreId, CatalogItemTypeId typeId, CatalogItemAverageScore score, PaginationRequest pageRequest) {
+    public PageResult<CatalogItemResponse> getAllItems(
+            PaginationRequest pageRequest) {
 
-        // filter score by interval
-        if (score != null) {
-            double minScore = Math.floor(score.value());
-            double maxScore = minScore + 0.99;
-            return repository.findByAverageScoreBetween(
-                    new CatalogItemAverageScore(minScore), new CatalogItemAverageScore(maxScore), pageRequest);
-        }
-
-        if (title != null && typeId != null && genreId != null) {
-            return repository.findByTitleAndTypeIdAndGenreId(title, genreId, typeId, pageRequest);
-        } else if (title != null) {
-            return repository.findByTitle(title, pageRequest);
-        } else if (typeId != null) {
-            return repository.findByTypeId(typeId, pageRequest);
-        } else if (genreId != null) {
-            return repository.findByGenreId(genreId, pageRequest);
-        }
-
-        System.out.println("No filter");
+//        // filter score by interval
+//        if (score != null) {
+//            double minScore = Math.floor(score.value());
+//            double maxScore = minScore + 0.99;
+//            return repository.findByAverageScoreBetween(
+//                    new CatalogItemAverageScore(minScore), new CatalogItemAverageScore(maxScore), pageRequest);
+//        }
+//
+//        if (title != null && typeId != null && genreId != null) {
+//            return repository.findByTitleAndTypeIdAndGenreId(title, genreId, typeId, pageRequest);
+//        } else if (title != null) {
+//            return repository.findByTitle(title, pageRequest);
+//        } else if (typeId != null) {
+//            return repository.findByTypeId(typeId, pageRequest);
+//        } else if (genreId != null) {
+//            return repository.findByGenreId(genreId, pageRequest);
+//        }
+//
+//        System.out.println("No filter");
         return repository.findAll(pageRequest);
     }
 
