@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'jacoco'
+	id("org.sonarqube") version "5.1.0.4882"
 }
 
 group = 'com.streaming.app'
@@ -45,6 +47,40 @@ dependencies {
 	runtimeOnly 'org.flywaydb:flyway-database-postgresql:10.18.2'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+
+task unitTest(type: Test) {
+	useJUnitPlatform {
+		includeTags 'unit'
+	}
+}
+
+task integrationTest(type: Test) {
+	useJUnitPlatform {
+		includeTags 'integration'
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.12"
+
+}
+
+jacocoTestReport {
+//	dependsOn test, integrationTest
+	reports {
+		xml.required = true
+		csv.required = true
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(files(
+				fileTree(dir: "$buildDir/classes/java/main").include("**/*.class"),
+				fileTree(dir: "$buildDir/classes/java/integrationTest").include("**/*.class")
+		))
+		executionData.setFrom(files(
+				fileTree(dir: "$buildDir").include("jacoco/test.exec"),
+				fileTree(dir: "$buildDir").include("jacoco/integrationTest.exec")
+		))
+	}
 }
