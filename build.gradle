@@ -45,6 +45,9 @@ dependencies {
 	// database migration - flyway
 	implementation 'org.flywaydb:flyway-core:10.18.2'
 	runtimeOnly 'org.flywaydb:flyway-database-postgresql:10.18.2'
+
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
 }
 
 
