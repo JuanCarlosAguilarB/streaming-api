@@ -1,6 +1,7 @@
 package com.streaming.app.streaming.catalog_item_rating.infrastructure.controller;
 
 import com.streaming.app.streaming.auth.domain.UserUserId;
+import com.streaming.app.streaming.auth.infrastructure.controllers.RetriveUserIdOfAuthenticatedUser;
 import com.streaming.app.streaming.catalog_item.domain.CatalogItemId;
 import com.streaming.app.streaming.catalog_item_rating.domain.UserRatingId;
 import com.streaming.app.streaming.catalog_item_rating.domain.UserRatingRating;
@@ -23,14 +24,17 @@ import java.util.UUID;
 public class PutUserRating {
 
     private final CatalogItemRater service;
+    private final RetriveUserIdOfAuthenticatedUser retriveUserId;
 
     @Operation(summary = "Rate a catalog item", description = "Rates a catalog item", tags = {"Catalog Item Rating"})
     @PutMapping("/v1/catalog-items/{catalogItemId}/ratings/")
     public ResponseEntity<?> rateCatalogItem(
             @PathVariable UUID catalogItemId,
-            @RequestBody RatingRequest rating,
-            UserUserId userId
+            @RequestBody RatingRequest rating
+
     ) {
+        UserUserId userId = retriveUserId.get();
+
         service.rateCatalogItem(
                 new UserRatingId(UUID.randomUUID()),
                 new CatalogItemId(catalogItemId),
