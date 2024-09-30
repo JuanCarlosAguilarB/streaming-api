@@ -1,4 +1,4 @@
-package com.streaming.app.streaming.auth.infrastructure.beans;
+package com.streaming.app.streaming.auth.infrastructure.controllers;
 
 
 import com.streaming.app.streaming.auth.domain.AuthServices;
@@ -7,20 +7,17 @@ import com.streaming.app.streaming.auth.domain.User;
 import com.streaming.app.streaming.auth.domain.UserUserId;
 import com.streaming.app.streaming.auth.infrastructure.security.RetrieveTokenFromRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.annotation.RequestScope;
 
-@Configuration
 @AllArgsConstructor
-public class BeanUserId {
+@Configuration
+public class RetriveUserIdOfAuthenticatedUser {
+
 
     private final AuthServices authServices;
     private final RetrieveTokenFromRequest retrieveTokenservice;
 
-    @Bean
-    @RequestScope
-    public UserUserId getUserId() {
+    public UserUserId get() {
 
         String token = retrieveTokenservice.execute();
 
