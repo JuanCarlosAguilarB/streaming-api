@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:16.3-alpine
+    environment:
+      POSTGRES_USER: ${db_username}
+      POSTGRES_PASSWORD: ${db_password}
+      POSTGRES_DB: ${db_name}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  streaming:
+    build: ../..
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${db_name}
+      - SPRING_DATASOURCE_USERNAME=${db_username}
+      - SPRING_DATASOURCE_PASSWORD=${db_password}
+      - RABBITMQ_HOST=${rabbitmq_host}
+      - RABBITMQ_PORT=${rabbitmq_port}
+      - RABBITMQ_USERNAME=${rabbitmq_username}
+      - RABBITMQ_PASSWORD=${rabbitmq_password}
+      - RABBITMQ_VHOST=${rabbitmq_vhost}
+    depends_on:
+      - postgres
+#      - rabbitmq
+#  rabbitmq:
+#    image: rabbitmq:3.11.17-management-alpine
+#    ports:
+#      - "15672:15672"
+#      - "5672:5672"
+volumes:
+  postgres-data:
