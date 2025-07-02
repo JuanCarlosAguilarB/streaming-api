@@ -1,4 +1,4 @@
-name: Build CI/CD flow  # Name of the workflow
+name: Build CI/CD flow 
 
 on: # When to run the workflow
   push: # Run the workflow on push

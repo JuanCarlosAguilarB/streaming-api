@@ -160,4 +160,3 @@ To run the tests:
 - **Hibernate**: ORM for database management and schema updates.
 - **Swagger**: API documentation and testing tool.
 - **Docker**: For containerized PostgreSQL setup.
-

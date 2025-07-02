@@ -10,10 +10,15 @@ services:
       - "5433:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
   streaming:
     build: .
+#      context: .  # project root
+#      dockerfile: ./docker/local/Dockerfile
     ports:
       - "8080:8080"
+    volumes:
+      - ./:/app  # For hot reload
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${db_name}
       - SPRING_DATASOURCE_USERNAME=${db_username}
@@ -25,8 +30,7 @@ services:
       - RABBITMQ_VHOST=${rabbitmq_vhost}
     depends_on:
       - postgres
-#      - rabbitmq
-#  rabbitmq:
+#      - rabbitmq:
 #    image: rabbitmq:3.11.17-management-alpine
 #    ports:
 #      - "15672:15672"
